@@ -1,11 +1,11 @@
 {
     "name": "hexmedia/yaml-linter",
     "description": "YamlLinter based on symfony command yaml:lint",
+    "keywords": [ "yaml", "linter", "yaml-linter" ],
     "require": {
-        "symfony/framework-bundle": ">=2.5",
-        "symfony/console": ">=2.5",
-        "symfony/yaml": ">=2.5",
-        "symfony/finder": ">=2.5"
+        "symfony/console": "~2.3",
+        "symfony/yaml": "~2.3",
+        "symfony/finder": "~2.3"
     },
     "license": "MIT",
     "authors": [
@@ -16,5 +16,15 @@
     ],
     "bin": [
         "bin/yaml-lint"
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hexmedia\\YamlLinter\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
 }
