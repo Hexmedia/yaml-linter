@@ -1,0 +1,20 @@
+{
+    "name": "hexmedia/yaml-linter",
+    "description": "YamlLinter based on symfony command yaml:lint",
+    "require": {
+        "symfony/framework-bundle": ">=2.5",
+        "symfony/console": ">=2.5",
+        "symfony/yaml": ">=2.5",
+        "symfony/finder": ">=2.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Krystian Kuczek",
+            "email": "krystian@hexmedia.pl"
+        }
+    ],
+    "bin": [
+        "bin/yaml-lint"
+    ]
+}
