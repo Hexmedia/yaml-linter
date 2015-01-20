@@ -1,0 +1,66 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * (c) Krystian Kuczek <krystian@hexmedia.pl>
+ */
+
+use Symfony\Bundle\FrameworkBundle\Command\YamlLintCommand;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Application;
+
+if (!date_default_timezone_get()) {
+    date_default_timezone_set('UTC');
+}
+
+
+function includeIfExists($file)
+{
+    if (file_exists($file)) {
+        return include $file;
+    }
+}
+
+if ((!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php')) && (!$loader = includeIfExists(__DIR__.'/../../../autoload.php'))) {
+    fwrite(STDERR,
+        'You must set up the project dependencies, run the following commands:'.PHP_EOL.
+        'curl -s http://getcomposer.org/installer | php'.PHP_EOL.
+        'php composer.phar install'.PHP_EOL
+    );
+    exit(1);
+}
+
+$console = new Application();
+
+$argv = $_SERVER['argv'];
+$argv = array_merge([array_shift($argv), "yaml-lint"], $argv);
+
+$argv = new ArgvInput($argv);
+
+$command = new YamlLintCommand();
+$command->setName('yaml-lint');
+
+//Description update
+$command->setHelp(<<<EOF
+The <info>%command.name%</info> command lints a YAML file and outputs to STDOUT
+the first encountered syntax error.
+
+You can validate the syntax of a file:
+
+  <info>php %command.name% filename</info>
+
+Or of a whole directory:
+
+  <info>php %command.name% dirname</info>
+  <info>php %command.name% dirname --format=json</info>
+
+You can also pass the YAML contents from STDIN:
+
+  <info>cat filename | php %command.name%</info>
+
+EOF
+);
+
+$console->add($command);
+
+$console->run($argv);
