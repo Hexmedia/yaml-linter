@@ -33,7 +33,7 @@ if ((!$loader = includeIfExists(__DIR__.'/../vendor/autoload.php')) && (!$loader
 $console = new Application();
 
 $argv = $_SERVER['argv'];
-$argv = array_merge([array_shift($argv), "yaml-lint"], $argv);
+$argv = array_merge(array(array_shift($argv), "yaml-lint"), $argv);
 
 $argv = new ArgvInput($argv);
 
