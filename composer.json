@@ -2,7 +2,7 @@
     "name": "hexmedia/yaml-linter",
     "description": "YamlLinter based on symfony command yaml:lint",
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
         "symfony/framework-bundle": ">=2.5",
         "symfony/console": ">=2.5",
         "symfony/yaml": ">=2.5",
